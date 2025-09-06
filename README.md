@@ -133,7 +133,7 @@ go test -tags=integration -v ./test/integration/
 LOGFLUX_SOCKET=/custom/path make test-integration
 ```
 
-📖 **Complete testing guide**: [docs/testing.md](docs/testing.md)
+**Complete testing guide**: [docs/testing.md](docs/testing.md)
 
 ### Integration Test Requirements
 
