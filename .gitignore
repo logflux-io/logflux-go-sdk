@@ -1,0 +1,79 @@
+# Temporary files and directories
+/tmp/
+tmp/
+*.tmp
+*.temp
+
+# Build artifacts
+/bin/
+/build/
+/dist/
+/out/
+/target/
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Language specific
+# C/C++
+*.a
+*.lib
+*.pch
+*.gch
+
+# Dependencies
+/vendor/
+/node_modules/
+/.bundle/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Testing
+/coverage/
+*.cover
+.coverage
+.pytest_cache/
+.phpunit.result.cache
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

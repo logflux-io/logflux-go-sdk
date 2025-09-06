@@ -1,0 +1,110 @@
+# golangci-lint configuration for LogFlux Go SDK
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+  go: '1.21'
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+    
+  gocyclo:
+    min-complexity: 15
+    
+  goimports:
+    local-prefixes: github.com/logflux-io/logflux-go-sdk
+    
+  govet:
+    check-shadowing: true
+    enable-all: true
+    
+  misspell:
+    locale: US
+    
+  unused:
+    check-exported: true
+    
+  unparam:
+    check-exported: true
+    
+  revive:
+    min-confidence: 0.8
+    rules:
+      - name: exported
+        arguments: ["disableStutteringCheck"]
+        
+  gosec:
+    includes:
+      - G401
+      - G501
+      - G601
+    excludes:
+      - G104 # Exclude "Errors unhandled" for some cases
+      
+  staticcheck:
+    go: "1.21"
+    
+  stylecheck:
+    go: "1.21"
+    checks: ["all", "-ST1000", "-ST1003", "-ST1016", "-ST1020", "-ST1021", "-ST1022"]
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gofmt
+    - goimports
+    - gosimple
+    - govet
+    - ineffassign
+    - misspell
+    - staticcheck
+    - typecheck
+    - unused
+    - whitespace
+    
+  # Don't run these linters on test files
+  exclude-dirs:
+    - vendor
+
+issues:
+  # Excluding configuration per-path, per-linter, per-text and per-source
+  exclude-rules:
+    # Exclude some linters from running on tests files
+    - path: _test\.go
+      linters:
+        - errcheck
+        
+    # Exclude some linters from running on examples
+    - path: examples/
+      linters:
+        - errcheck
+        
+    # Allow intentional error ignoring in test files
+    - path: _test\.go
+      text: "Error return value.*is not checked"
+      
+    # Allow intentional blank assignments in tests
+    - path: _test\.go
+      text: "blank imports"
+        
+  # Independently from option `exclude` we use default exclude patterns,
+  # it can be disabled by `exclude-use-default: false`. To list all
+  # excluded by default patterns execute `golangci-lint run --help`
+  exclude-use-default: true
+  
+  # Maximum issues count per one linter. Set to 0 to disable.
+  max-issues-per-linter: 0
+  
+  # Maximum count of issues with the same text. Set to 0 to disable.
+  max-same-issues: 0
+  
+  # Show only new issues: if there are unstaged changes or untracked files,
+  # only those changes are analyzed, else only changes in HEAD~ are analyzed.
+  new: false
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
